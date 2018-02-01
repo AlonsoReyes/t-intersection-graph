@@ -4,12 +4,11 @@ from pygame import image, transform
 from models.messages import *
 from models.node import Node
 from utils.utils import *
-from time import time
-import random
 
 images_directory = os.path.dirname(os.path.abspath(__file__)) + "/../images/"
 
 
+# Behaviour will be create a Channel and then add cars to it, when added the channel will send NewCarMessage
 class Car(object):
     """
     Car representation. It has x and y position (as in a cartesian plane), an absolute speed and a direction. In case
@@ -104,9 +103,6 @@ class Car(object):
         if channel is not None:
             channel.add_car(self)
             self.broadcast(NewCarMessage(self))
-
-        # MAYBE THIS IS WRONG??? TRYING TO KEEP GRAPH UPDATED UNTIL COORDINATION
-        self.add_new_car(name, lane, intention)
 
         # TODO
         # Variables to simulate errors
@@ -401,17 +397,21 @@ class Car(object):
             if node.get_name() not in visited:
                 visited.add(node.get_name())
                 if cars_cross_path(lane, intention, node.get_lane(), node.get_intention()):
+                    # print(self.get_name(), ' ', name)
                     follow_list.append(node.get_name())
-                    follow_list = [car for car in follow_list if car not in node.get_follow_list()]
+                    for car in node.get_follow_list():
+                        visited.add(car)
                 else:
                     # If it doesn't collide then add the follow list of the node to to_visit list
-                    to_visit = to_visit.append(graph[node.get_name()])
-        graph[name] = Node(name=name, follow_list=follow_list, lane=lane, intention=intention)
+                    to_visit = to_visit + [graph[car] for car in graph[node.get_name()].get_follow_list()]
+
         for car in follow_list:
             if car in self.get_leaf_cars():
                 leaf_cars.remove(car)
-                leaf_cars.add(name)
         leaf_cars.add(name)
+        if name == self.get_name() and name in follow_list:
+            follow_list.remove(name)
+        graph[name] = Node(name=name, follow_list=follow_list, lane=lane, intention=intention)
         return follow_list
 
     # Methods to receive messages
@@ -440,6 +440,12 @@ class Car(object):
     def add_to_counter(self, number):
         self.counter += number
 
+    def send_info_message(self):
+        self.broadcast(InfoMessage(self))
+
+    def send_left_intersection_message(self):
+        self.broadcast(LeftIntersectionMessage(self))
+
     def receive_info_message(self, message):
         if message.get_sender_name() in self.following_cars:
             followed = self.following_cars[message.get_sender_name()]
@@ -462,7 +468,6 @@ class Car(object):
         sender_name = message.get_sender_name()
         if sender_name in self.following_cars:
             del self.following_cars[sender_name]
-
         del self.graph[sender_name]
 
     def receive_welcome_message(self, message):
@@ -517,7 +522,7 @@ class Car(object):
     def send_update(self):
         # +1 to avoid 0%something, avoids doing it at the beginning
         if (self.get_counter() + 1) % (self.get_update_ticks() + 1) == 0:
-            self.broadcast(InfoMessage(self))
+            self.send_info_message()
 
     def update(self):
         self.send_update()
@@ -532,7 +537,8 @@ class Car(object):
         return False
 
     def test_method(self):
-        print("Normal Car")
+        self.__class__ = SupervisorCar
+        return self.is_supervisor()
 
 
 # TODO REMEMBER TO CHANGE RECEIVE NEW CAR MESSAGE, NEEDS TO SEND MESSAGES BACK AS SUPERVISOR
@@ -543,6 +549,9 @@ class SupervisorCar(Car):
 
     def is_supervisor(self):
         return True
+
+    def send_welcome_message(self, receiver_name=None):
+        self.broadcast(WelcomeMessage(sender_car=self, receiver_name=receiver_name))
 
     def receive_new_car_message(self, message):
         if message.get_sender_name() not in self.get_graph():

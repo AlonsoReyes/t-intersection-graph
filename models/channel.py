@@ -1,8 +1,12 @@
 
+
+# Behaviour will be create a Channel and then add cars to it, when added the channel will send NewCarMessage
 class Channel(object):
 
-    def __init__(self, car_list=list()):
+    def __init__(self, car_list=None):
         self.cars = car_list  # It is a list of Car objects
+        if car_list is None:
+            self.cars = []
 
     def add_car(self, car):
         self.cars.append(car)
@@ -24,3 +28,6 @@ class Channel(object):
 
     def set_cars(self, car_list):
         self.cars = car_list
+
+    def clean_channel(self):
+        self.cars = []
