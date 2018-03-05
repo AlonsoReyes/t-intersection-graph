@@ -7,6 +7,13 @@ class Node(object):
         self.intention = intention
         self.lane = lane
 
+    def __eq__(self, other):
+        if isinstance(other, Node):
+            if self.name == other.get_name() and self.follow_list == other.get_follow_list() \
+                    and self.intention == other.get_intention() and self.lane == other.get_lane():
+                return True
+        return False
+
     def get_name(self):
         return self.name
 
@@ -30,4 +37,3 @@ class Node(object):
 
     def set_lane(self, lane):
         self.lane = lane
-

@@ -3,9 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="fe72d488-98cc-4dc3-8826-f2a5171e4268" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/models/car.py" afterPath="$PROJECT_DIR$/models/car.py" />
-      <change beforePath="$PROJECT_DIR$/models/channel.py" afterPath="$PROJECT_DIR$/models/channel.py" />
-      <change beforePath="$PROJECT_DIR$/tests/car_tests.py" afterPath="$PROJECT_DIR$/tests/car_tests.py" />
+      <change beforePath="$PROJECT_DIR$/images/background.jpg" afterPath="$PROJECT_DIR$/images/background.jpg" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/models/car.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/models/channel.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/models/messages.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/models/node.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/simulations/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/simulations/simulation.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tests/car_tests.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/utils/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.py" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,28 +24,94 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_car_tests_py.coverage" NAME="Unittests in car_tests.py Coverage Results" MODIFIED="1517445590404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/t_intersection_graph$simulation.coverage" NAME="simulation Coverage Results" MODIFIED="1517374681488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulations" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_car_tests_py.coverage" NAME="Unittests in car_coordination_tests.py Coverage Results" MODIFIED="1518141095976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$car_methods_tests.coverage" NAME="car_methods_tests Coverage Results" MODIFIED="1518853211282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_movement_tests_py.coverage" NAME="Unittests in movement_tests.py Coverage Results" MODIFIED="1520274468125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$simulation.coverage" NAME="simulation Coverage Results" MODIFIED="1518141068185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulations" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_utils_tests_py.coverage" NAME="Unittests in car_methods_tests.py Coverage Results" MODIFIED="1518854720427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$utils.coverage" NAME="utils Coverage Results" MODIFIED="1519457820887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$point_simulation.coverage" NAME="point_simulation Coverage Results" MODIFIED="1519462403785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulations" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_coordination_tests_py.coverage" NAME="Unittests in coordination_tests.py Coverage Results" MODIFIED="1520274464729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_sensor_tests_py.coverage" NAME="Unittests in sensor_tests.py Coverage Results" MODIFIED="1520275639553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$sensor_simulation.coverage" NAME="sensor_simulation Coverage Results" MODIFIED="1520262067440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulations" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1520275782978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/t_intersection_graph$Unittests_in_car_methods_tests_py.coverage" NAME="Unittests in car_methods_tests.py Coverage Results" MODIFIED="1520274459980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="car_tests.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/car_tests.py">
+      <file leaf-file-name="controller.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+            <state relative-caret-position="238">
+              <caret line="56" column="24" lean-forward="true" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sensor_simulation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simulations/sensor_simulation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="59" column="106" lean-forward="false" selection-start-line="59" selection-start-column="106" selection-end-line="59" selection-end-column="106" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="node.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/node.py">
+      <file leaf-file-name="sensor.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/sensor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="392">
+              <caret line="75" column="20" lean-forward="true" selection-start-line="75" selection-start-column="20" selection-end-line="75" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3225">
+              <caret line="14" column="64" lean-forward="false" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="point_simulation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simulations/point_simulation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="750">
+              <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="car.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/car.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3021">
+              <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sensor_tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/sensor_tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="447">
+              <caret line="76" column="27" lean-forward="false" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -45,30 +120,18 @@
       <file leaf-file-name="channel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/channel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-231">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="-75">
+              <caret line="41" column="46" lean-forward="true" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="car.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/car.py">
+      <file leaf-file-name="coordination_tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/coordination_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="235" column="26" lean-forward="false" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="messages.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/messages.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3225">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="2421">
+              <caret line="184" column="68" lean-forward="false" selection-start-line="184" selection-start-column="68" selection-end-line="184" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -76,9 +139,45 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>get_following_cars</find>
+      <find>280</find>
+      <find>210</find>
+      <find>check_coll</find>
+      <find>set_ace</find>
+      <find>set_ac</find>
+      <find>get_accele</find>
+      <find>left_intersec</find>
+      <find>inner_in</find>
+      <find>check_posi</find>
+      <find>update(</find>
+      <find>check_left_</find>
+      <find>enter_</find>
+      <find>get_full_inte</find>
+      <find>set_acce</find>
+      <find>update(sel</find>
+      <find>update</find>
+      <find>move(se</find>
+      <find>move(selF</find>
+      <find>bad</find>
+      <find>set_accel</find>
+      <find>update(self</find>
+      <find>move</find>
+      <find>turn</find>
+      <find>origin</find>
+      <find>get_origin</find>
+      <find>draw_car</find>
+      <find>distan</find>
+      <find>accelerate</find>
+      <find>update()</find>
+      <find>left_in</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -87,10 +186,26 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/tests/car_tests.py" />
+        <option value="$PROJECT_DIR$/models/node.py" />
         <option value="$PROJECT_DIR$/simulations/simulation.py" />
+        <option value="$PROJECT_DIR$/tests/car_coordination_tests.py" />
+        <option value="$PROJECT_DIR$/models/simulator.py" />
+        <option value="$PROJECT_DIR$/tests/init_tests.py" />
+        <option value="$PROJECT_DIR$/tests/utils_tests.py" />
+        <option value="$PROJECT_DIR$/trash/car_coordination_tests.py" />
+        <option value="$PROJECT_DIR$/tests/coordination_tests.py" />
+        <option value="$PROJECT_DIR$/tests/car_methods_tests.py" />
+        <option value="$PROJECT_DIR$/tests/movement_tests.py" />
+        <option value="$PROJECT_DIR$/models/messages.py" />
+        <option value="$PROJECT_DIR$/utils/utils.py" />
+        <option value="$PROJECT_DIR$/models/controller.py" />
+        <option value="$PROJECT_DIR$/simulations/point_simulation.py" />
+        <option value="$PROJECT_DIR$/simulations/sensor_simulation.py" />
         <option value="$PROJECT_DIR$/models/channel.py" />
         <option value="$PROJECT_DIR$/models/car.py" />
-        <option value="$PROJECT_DIR$/tests/car_tests.py" />
+        <option value="$PROJECT_DIR$/tests/sensor_tests.py" />
+        <option value="$PROJECT_DIR$/models/sensor.py" />
       </list>
     </option>
   </component>
@@ -101,7 +216,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="950" />
+    <option name="x" value="857" />
     <option name="width" value="980" />
     <option name="height" value="1030" />
   </component>
@@ -120,7 +235,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -143,16 +257,29 @@
               <item name="t-intersection-graph" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="t-intersection-graph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="t-intersection-graph" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/areye/Desktop/NICLabs/t-intersection-graph/models/car.py" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\areye\Desktop\NICLabs\t-intersection-graph\trash" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -166,27 +293,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in car_tests.py">
-    <configuration name="simulation" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/simulations" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="t-intersection-graph" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simulations/simulation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="Unittests in car_tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in tests">
+    <configuration name="Unittests in car_methods_tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -198,17 +306,84 @@
       <module name="t-intersection-graph" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/car_tests.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/car_methods_tests.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in car_tests.py" />
-      <item index="1" class="java.lang.String" itemvalue="Python.simulation" />
+    <configuration name="Unittests in coordination_tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="t-intersection-graph" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/coordination_tests.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="Unittests in movement_tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="t-intersection-graph" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/movement_tests.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="Unittests in sensor_tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="t-intersection-graph" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/sensor_tests.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="Unittests in tests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="t-intersection-graph" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_pattern" value="&quot;*_tests.py&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in coordination_tests.py" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in car_methods_tests.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in movement_tests.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in sensor_tests.py" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in tests" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in car_tests.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python.simulation" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in tests" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in sensor_tests.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in movement_tests.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in coordination_tests.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in car_methods_tests.py" />
       </list>
     </recent_temporary>
   </component>
@@ -229,35 +404,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 34m 43s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 42m 55s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 35m 05s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 43m 44s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 35m 10s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 45m 07s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 35m 20s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 46m 10s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 36m 15s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 46m 36s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 37m 01s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 46m 50s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 38m 08s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 47m 11s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 39m 31s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_sensor_tests_py - 2018.03.05 at 15h 47m 20s.xml">
+      <configuration name="Unittests in sensor_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 39m 47s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_tests - 2018.03.05 at 15h 49m 02s.xml">
+      <configuration name="Unittests in tests" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_car_tests_py - 2018.01.31 at 21h 39m 56s.xml">
-      <configuration name="Unittests in car_tests.py" configurationId="tests" />
+    <history-entry file="Unittests_in_tests - 2018.03.05 at 15h 49m 46s.xml">
+      <configuration name="Unittests in tests" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -265,25 +440,27 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38188073" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33142203" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29472476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,17 +470,181 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/movement_tests.py</url>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/car_tests.py">
+    <entry file="file://$PROJECT_DIR$/models/controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/sensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2700">
+          <caret line="108" column="43" lean-forward="false" selection-start-line="108" selection-start-column="43" selection-end-line="108" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/car.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19000">
+          <caret line="766" column="9" lean-forward="false" selection-start-line="766" selection-start-column="9" selection-end-line="766" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1925">
+          <caret line="83" column="27" lean-forward="false" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulations/sensor_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="875">
+          <caret line="39" column="74" lean-forward="false" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/sensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2700">
+          <caret line="108" column="43" lean-forward="false" selection-start-line="108" selection-start-column="43" selection-end-line="108" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/car.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19000">
+          <caret line="766" column="9" lean-forward="false" selection-start-line="766" selection-start-column="9" selection-end-line="766" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1925">
+          <caret line="83" column="27" lean-forward="false" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulations/sensor_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="875">
+          <caret line="39" column="74" lean-forward="false" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/car_methods_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1675">
+          <caret line="72" column="27" lean-forward="false" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/movement_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/messages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4100">
+          <caret line="164" column="51" lean-forward="false" selection-start-line="164" selection-start-column="51" selection-end-line="164" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trash/car_coordination_tests.py" />
+    <entry file="file://$PROJECT_DIR$/utils/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/coordination_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/channel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2425">
+          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/car.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17825">
+          <caret line="719" column="27" lean-forward="false" selection-start-line="719" selection-start-column="27" selection-end-line="719" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/sensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -311,7 +652,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/messages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4425">
+          <caret line="177" column="0" lean-forward="true" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trash/car_coordination_tests.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/teamcity/diff_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/car.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14600">
+          <caret line="590" column="49" lean-forward="true" selection-start-line="590" selection-start-column="49" selection-end-line="590" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trash/car_coordination_tests.py" />
+    <entry file="file://$PROJECT_DIR$/models/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -323,74 +706,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulations/simulation.py">
+    <entry file="file://$PROJECT_DIR$/simulations/simulation.py" />
+    <entry file="file://$PROJECT_DIR$/simulations/__init__.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/teamcity/diff_tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="675">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulations/__init__.py">
+    <entry file="file://$PROJECT_DIR$/tests/init_tests.py" />
+    <entry file="file://$PROJECT_DIR$/simulations/simulation.py" />
+    <entry file="file://$PROJECT_DIR$/models/simulator.py" />
+    <entry file="file://$PROJECT_DIR$/models/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trash/car_coordination_tests.py" />
+    <entry file="file://$PROJECT_DIR$/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulations/simulation.py">
+    <entry file="file://$PROJECT_DIR$/tests/movement_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="1">
+          <caret line="17" column="68" lean-forward="true" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="56" column="24" lean-forward="true" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/messages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="77" column="52" lean-forward="false" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/coordination_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2421">
+          <caret line="184" column="68" lean-forward="false" selection-start-line="184" selection-start-column="68" selection-end-line="184" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulations/sensor_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="59" column="106" lean-forward="false" selection-start-line="59" selection-start-column="106" selection-end-line="59" selection-end-column="106" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/car_methods_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="66" column="36" lean-forward="false" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulations/point_simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/messages.py">
+    <entry file="file://$PROJECT_DIR$/models/channel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3225">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-75">
+          <caret line="41" column="46" lean-forward="true" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/car.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="235" column="26" lean-forward="false" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="26" />
+        <state relative-caret-position="-3021">
+          <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/node.py">
+    <entry file="file://$PROJECT_DIR$/utils/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/channel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/car_tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        <state relative-caret-position="-3225">
+          <caret line="14" column="64" lean-forward="false" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/sensor_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="76" column="27" lean-forward="false" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/sensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="75" column="20" lean-forward="true" selection-start-line="75" selection-start-column="20" selection-end-line="75" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,10 +1,15 @@
-from utils.utils import prepare_follow_list
 
 
 class Message(object):
 
     def __init__(self, sender_car):
         self.sender_name = sender_car.get_name()
+
+    def __eq__(self, other):
+        if isinstance(other, type(self)) and self.sender_name == other.get_sender_name():
+            if self.__class__ == other.__class__:
+                return True
+        return False
 
     # Some setters and getters
     def get_sender_name(self):
@@ -38,6 +43,7 @@ class InfoMessage(Message):
         self.sender_direction = sender_car.get_direction()
         self.sender_speed = sender_car.get_speed()
         self.sender_acceleration = sender_car.get_acceleration()
+        self.sender_intention = sender_car.get_intention()
 
     def is_info_message(self):
         return True
@@ -58,7 +64,7 @@ class InfoMessage(Message):
         return self.sender_direction
 
     def set_sender_direction(self, direction):
-        self.sender_direction= direction
+        self.sender_direction = direction
 
     def get_sender_speed(self):
         return self.sender_speed
@@ -71,6 +77,12 @@ class InfoMessage(Message):
 
     def set_sender_acceleration(self, acceleration):
         self.sender_acceleration = acceleration
+
+    def get_sender_intention(self):
+        return self.sender_intention
+
+    def set_sender_intention(self, intention):
+        self.sender_intention = intention
 
 
 class NewCarMessage(Message):
@@ -137,8 +149,6 @@ class WelcomeMessage(Message):
         self.supervisor_name = sender_car.get_supervisor_car()
         self.second_at_charge_name = sender_car.get_second_at_charge()
         self.follow_list = {}
-        if receiver_name is not None:
-            self.follow_list = prepare_follow_list(sender_car.get_graph()[receiver_name].get_follow_list())
 
     def is_welcome_message(self):
         return True
@@ -158,8 +168,9 @@ class WelcomeMessage(Message):
     def get_second_at_charge(self):
         return self.second_at_charge_name
 
-    def get_follow_list(self):
-        return self.follow_list
+    def get_follow_list(self, car_name):
+        from utils.utils import prepare_follow_list
+        return prepare_follow_list(self.get_graph()[car_name].get_follow_list())
 
     def get_leaf_cars(self):
         return self.leaf_cars
@@ -180,4 +191,3 @@ class SecondAtChargeMessage(Message):
 
     def get_receiver_name(self):
         return self.receiver_name
-
