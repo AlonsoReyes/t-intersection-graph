@@ -1,5 +1,4 @@
 import os
-import pygame
 from math import pi, cos, sin
 from pygame import image, transform
 from models.messages import *

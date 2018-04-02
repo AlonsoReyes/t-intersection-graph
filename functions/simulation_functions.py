@@ -1,8 +1,7 @@
 import math
 import random
 import json
-import time
-from models.controller import algorithm_controller, accelerating_controller
+from models.controller import accelerating_controller
 
 
 # if I want a car to spawn every 3 ticks i should give 1/3 as an argument

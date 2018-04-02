@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe72d488-98cc-4dc3-8826-f2a5171e4268" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/functions/simulation_functions.py" afterPath="$PROJECT_DIR$/functions/simulation_functions.py" />
       <change beforePath="$PROJECT_DIR$/models/car.py" afterPath="$PROJECT_DIR$/models/car.py" />
-      <change beforePath="$PROJECT_DIR$/models/channel.py" afterPath="$PROJECT_DIR$/models/channel.py" />
-      <change beforePath="$PROJECT_DIR$/models/controller.py" afterPath="$PROJECT_DIR$/models/controller.py" />
-      <change beforePath="$PROJECT_DIR$/models/messages.py" afterPath="$PROJECT_DIR$/models/messages.py" />
-      <change beforePath="$PROJECT_DIR$/models/sensor.py" afterPath="$PROJECT_DIR$/models/sensor.py" />
-      <change beforePath="$PROJECT_DIR$/simulations/sensor_simulation.py" afterPath="$PROJECT_DIR$/simulations/sensor_simulation.py" />
-      <change beforePath="$PROJECT_DIR$/tests/car_methods_tests.py" afterPath="$PROJECT_DIR$/tests/car_methods_tests.py" />
-      <change beforePath="$PROJECT_DIR$/tests/sensor_tests.py" afterPath="$PROJECT_DIR$/tests/sensor_tests.py" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.py" afterPath="$PROJECT_DIR$/utils/utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -81,14 +73,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simulation_functions.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="simulation_functions.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/functions/simulation_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="124" column="52" lean-forward="false" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,21 +86,19 @@
       <file leaf-file-name="car_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions/car_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
+            <state relative-caret-position="5050">
               <caret line="202" column="16" lean-forward="false" selection-start-line="202" selection-start-column="4" selection-end-line="202" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="car.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="car.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/car.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18050">
-              <caret line="953" column="19" lean-forward="true" selection-start-line="953" selection-start-column="19" selection-end-line="953" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,15 +145,15 @@
       <find>ticks_to_p</find>
       <find>lane</find>
       <find>lane&quot;: &quot;1</find>
-      <find>ticks_to_pas</find>
       <find>name&quot;: &quot;18</find>
       <find>lane&quot;: &quot;2</find>
       <find>ticks_to_r</find>
       <find>31</find>
-      <find>def upda</find>
       <find>deli</find>
       <find>31</find>
       <find>3</find>
+      <find>def upda</find>
+      <find>ticks_to_pas</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,9 +182,9 @@
         <option value="$PROJECT_DIR$/models/channel.py" />
         <option value="$PROJECT_DIR$/functions/car_functions.py" />
         <option value="$PROJECT_DIR$/simulation_files/1000_ticks" />
-        <option value="$PROJECT_DIR$/functions/simulation_functions.py" />
         <option value="$PROJECT_DIR$/models/controller.py" />
         <option value="$PROJECT_DIR$/models/car.py" />
+        <option value="$PROJECT_DIR$/functions/simulation_functions.py" />
       </list>
     </option>
   </component>
@@ -206,7 +194,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="857" />
     <option name="width" value="980" />
     <option name="height" value="1030" />
@@ -449,13 +437,14 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2798165" sideWeight="0.50416666" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33486238" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33486238" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -529,9 +518,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19000">
           <caret line="766" column="9" lean-forward="false" selection-start-line="766" selection-start-column="9" selection-end-line="766" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -616,9 +603,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17825">
           <caret line="719" column="27" lean-forward="false" selection-start-line="719" selection-start-column="27" selection-end-line="719" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -666,9 +651,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14600">
           <caret line="590" column="49" lean-forward="true" selection-start-line="590" selection-start-column="49" selection-end-line="590" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -811,29 +794,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/car_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="202" column="16" lean-forward="false" selection-start-line="202" selection-start-column="4" selection-end-line="202" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simulation_files/1000_ticks">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="0" column="941" lean-forward="false" selection-start-line="0" selection-start-column="932" selection-end-line="0" selection-end-column="941" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/functions/simulation_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="124" column="52" lean-forward="false" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -863,11 +828,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/car.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18050">
-          <caret line="953" column="19" lean-forward="true" selection-start-line="953" selection-start-column="19" selection-end-line="953" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions/car_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5050">
+          <caret line="202" column="16" lean-forward="false" selection-start-line="202" selection-start-column="4" selection-end-line="202" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions/simulation_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
