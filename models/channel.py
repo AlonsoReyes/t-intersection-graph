@@ -33,8 +33,8 @@ class Channel(object):
 
     def last_to_leave_notification(self, car):
         if car.get_sensor() is not None:
-            car.get_sensor().set_closest_car(self.recent_leaving[car.get_lane()])
-        self.recent_leaving[car.get_lane()] = car
+            car.get_sensor().set_closest_car(self.recent_leaving[car.destination_lane()])
+        self.recent_leaving[car.destination_lane()] = car
 
     def last_to_enter_notification(self, car):
         if car.get_sensor() is not None:

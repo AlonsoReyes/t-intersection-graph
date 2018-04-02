@@ -32,7 +32,7 @@ class TestSensor(unittest.TestCase):
                                   lane=0, intention='s')
         sensor = ProximitySensor(owner_car=follower_car, closest_car=first_car)
         follower_car.set_sensor(sensor)
-        self.assertEqual(35, sensor.ticks_to_crash())
+        self.assertEqual(30, sensor.ticks_to_crash())
 
     def test_ticks_to_crash_lane_1(self):
         channel = Channel()
@@ -45,7 +45,7 @@ class TestSensor(unittest.TestCase):
                                   lane=1, intention='s')
         sensor = ProximitySensor(owner_car=follower_car, closest_car=first_car)
         follower_car.set_sensor(sensor)
-        self.assertEqual(35, sensor.ticks_to_crash())
+        self.assertEqual(30, sensor.ticks_to_crash())
 
     def test_ticks_to_crash_lane_2(self):
         channel = Channel()
@@ -60,8 +60,7 @@ class TestSensor(unittest.TestCase):
                                   lane=2, intention='s')
         sensor = ProximitySensor(owner_car=follower_car, closest_car=first_car)
         follower_car.set_sensor(sensor)
-        print('test')
-        self.assertEqual(35, sensor.ticks_to_crash())
+        self.assertEqual(31, sensor.ticks_to_crash())
 
     def test_ticks_to_crash_lane_3(self):
         channel = Channel()
@@ -74,7 +73,7 @@ class TestSensor(unittest.TestCase):
                                   lane=3, intention='s')
         sensor = ProximitySensor(owner_car=follower_car, closest_car=first_car)
         follower_car.set_sensor(sensor)
-        self.assertEqual(35, sensor.ticks_to_crash())
+        self.assertEqual(31, sensor.ticks_to_crash())
 
     def test_sensor_condition(self):
         channel = Channel()

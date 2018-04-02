@@ -63,7 +63,7 @@ class TestCarMethods(unittest.TestCase):
             do_round([car], channel)
         self.assertTrue(car.inside_inner_intersection())
         self.assertFalse(car.check_left_inner_intersection())
-        for _ in range(61):
+        for _ in range(66):
             do_round([car], channel)
         self.assertTrue(car not in channel.get_cars())
         self.assertTrue(car.check_left_inner_intersection())

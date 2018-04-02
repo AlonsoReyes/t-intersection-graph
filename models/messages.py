@@ -44,6 +44,10 @@ class InfoMessage(Message):
         self.sender_speed = sender_car.get_speed()
         self.sender_acceleration = sender_car.get_acceleration()
         self.sender_intention = sender_car.get_intention()
+        self.car_length = sender_car.get_car_length()
+        self.origin_direction = sender_car.get_origin_direction()
+        self.origin_x = sender_car.get_origin_x_coordinate()
+        self.origin_y = sender_car.get_origin_y_coordinate()
 
     def is_info_message(self):
         return True
@@ -83,6 +87,30 @@ class InfoMessage(Message):
 
     def set_sender_intention(self, intention):
         self.sender_intention = intention
+
+    def get_sender_car_length(self):
+        return self.car_length
+
+    def set_sender_car_length(self, length):
+        self.car_length = length
+
+    def get_sender_origin_direction(self):
+        return self.origin_direction
+
+    def set_sender_origin_direction(self, direction):
+        self.origin_direction = direction
+
+    def get_sender_origin_x(self):
+        return self.origin_x
+
+    def set_sender_origin_x(self, x):
+        self.origin_x = x
+
+    def get_sender_origin_y(self):
+        return self.origin_y
+
+    def set_sender_origin_y(self, y):
+        self.origin_y = y
 
 
 class NewCarMessage(Message):

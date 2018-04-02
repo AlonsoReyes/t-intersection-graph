@@ -1,18 +1,128 @@
-from random import randint
+from random import randint, uniform
 from models.car import Car
-from models.sensor import ProximitySensor
+from models.sensor import ProximitySensor, DistanceSensor
 import pygame
 import os
 from models.controller import default_controller
 
-full_intersection_rect = pygame.Rect(0, 0, 768, 768)  # 768 is the width and height, 0 0 is from that point
-inner_intersection_rect = pygame.Rect(280, 280, 210, 210)
+
 white = (255, 255, 255)  # RGB white color representation
 black = (0, 0, 0)  # RGB black color representation
-# initial positions inside the intersection
-inside_initial_positions = [(435, 760, 0, 0), (760, 345, 90, 1), (345, 10, 180, 2), (10, 435, 270, 3)]
-# initial positions outside the intersection to simulate that the cars enter it
-outside_initial_positions = [(435, 868, 0, 0), (868, 335, 90, 1), (335, -98, 180, 2), (-98, 435, 270, 3)]
+
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (0, 0)
+images_directory = os.path.dirname(os.path.abspath(__file__)) + "/../images/"
+intersection_background = pygame.image.load(images_directory + "background.jpg")
+
+# Full intersection positions
+background_width = intersection_background.get_width()
+background_height = intersection_background.get_height()
+background_left_coordinate = 0
+background_top_coordinate = 0
+
+# Inner intersection positions
+inner_intersection_width = 210
+inner_intersection_height = 210
+inner_left_coordinate = 280
+inner_top_coordinate = 280
+
+# 768 is the width and height, 0 0 is from that point
+full_intersection_rect = pygame.Rect(background_left_coordinate, background_top_coordinate,
+                                     background_width, background_height)
+inner_intersection_rect = pygame.Rect(inner_left_coordinate, inner_top_coordinate,
+                                      inner_intersection_width, inner_intersection_height)
+
+
+# initial positions outside the intersection
+# (pos_x, pos_y, direction, lane)
+total_of_background_x = background_left_coordinate + background_width
+total_of_background_y = background_top_coordinate + background_height
+quarter_inner_width = inner_intersection_width / 4
+quarter_inner_height = inner_intersection_height / 4
+
+# pos_x, pos_y of spawn point of that lane
+lane_0_spawn = [inner_left_coordinate + inner_intersection_width / 2 + inner_intersection_width / 4,
+                total_of_background_y + 100]
+lane_1_spawn = [total_of_background_x + 100,
+                inner_top_coordinate + inner_intersection_height / 2 - inner_intersection_height / 4]
+lane_2_spawn = [inner_left_coordinate + inner_intersection_width / 2 - inner_intersection_width / 4,
+                background_top_coordinate - 100]
+lane_3_spawn = [background_left_coordinate - 100,
+                inner_top_coordinate + inner_intersection_height / 2 + inner_intersection_height / 4]
+
+outside_initial_positions = [(lane_0_spawn[0], lane_0_spawn[1], 0, 0),
+                             (lane_1_spawn[0], lane_1_spawn[1], 90, 1),
+                             (lane_2_spawn[0], lane_2_spawn[1], 180, 2),
+                             (lane_3_spawn[0], lane_3_spawn[1], 270, 3)]
+
+
+# exact points that the cars collision in the entrance/exit of the inner intersection, starting from the bottom
+# going counter clockwise, index = lane
+entry_collision_points = [(inner_left_coordinate + inner_intersection_width / 2 + inner_intersection_width / 4
+                           , inner_top_coordinate + inner_intersection_height),
+                          (inner_left_coordinate + inner_intersection_width,
+                           inner_top_coordinate + inner_intersection_height / 2 - inner_intersection_height / 4),
+                          (inner_left_coordinate + inner_intersection_width / 2 - inner_intersection_width / 4
+                           , inner_top_coordinate),
+                          (inner_left_coordinate,
+                           inner_top_coordinate + inner_intersection_height / 2 + inner_intersection_height / 4)]
+
+exit_collision_points = [(inner_left_coordinate + inner_intersection_width / 2 - inner_intersection_width / 4,
+                          inner_top_coordinate + inner_intersection_height),
+                         (inner_left_coordinate + inner_intersection_width,
+                          inner_top_coordinate + inner_intersection_height / 2 + inner_intersection_height / 4),
+                         (inner_left_coordinate + inner_intersection_width / 2 + inner_intersection_width / 4,
+                          inner_top_coordinate),
+                         (inner_left_coordinate,
+                          inner_top_coordinate + inner_intersection_height / 2 - inner_intersection_height / 4)]
+# starts from bottom right and goes counter clockwise
+inner_square_collision_points = [(outside_initial_positions[i % 4][i % 2],
+                                  outside_initial_positions[(i + 1) % 4][(i + 1) % 2])
+                                 for i in [3, 0, 1, 2]]
+
+# Circumference collision points starting from the bottom one, then right, top and last the left one
+left_turn_collision_points = [(385, 394), (394, 385), (385, 376), (376, 385)]
+intersection_points = entry_collision_points + exit_collision_points + inner_square_collision_points + \
+                     left_turn_collision_points
+intersection_matrix = [{'s': [entry_collision_points[0], exit_collision_points[2],
+                              inner_square_collision_points[0], inner_square_collision_points[1]],  # Lane 0
+                        'l': [entry_collision_points[0], exit_collision_points[3],
+                              inner_square_collision_points[0], inner_square_collision_points[2],
+                              left_turn_collision_points[0], left_turn_collision_points[1],
+                              left_turn_collision_points[2], left_turn_collision_points[3]],
+                        'r': [entry_collision_points[0], exit_collision_points[1],
+                              inner_square_collision_points[0]]},
+                       {'s': [entry_collision_points[1], exit_collision_points[3],
+                              inner_square_collision_points[1], inner_square_collision_points[2]],  # Lane 1
+                        'l': [entry_collision_points[1], exit_collision_points[0],
+                              inner_square_collision_points[1], inner_square_collision_points[3],
+                              left_turn_collision_points[0], left_turn_collision_points[1],
+                              left_turn_collision_points[2], left_turn_collision_points[3]],
+                        'r': [entry_collision_points[1], exit_collision_points[2],
+                              inner_square_collision_points[1]]},
+                       {'s': [entry_collision_points[2], exit_collision_points[0],
+                              inner_square_collision_points[2], inner_square_collision_points[3]],  # Lane 2
+                        'l': [entry_collision_points[2], exit_collision_points[1],
+                              inner_square_collision_points[0], inner_square_collision_points[2],
+                              left_turn_collision_points[0], left_turn_collision_points[1],
+                              left_turn_collision_points[2], left_turn_collision_points[3]],
+                        'r': [entry_collision_points[2], exit_collision_points[3],
+                              inner_square_collision_points[2]]},
+                       {'s': [entry_collision_points[3], exit_collision_points[1],
+                              inner_square_collision_points[3], inner_square_collision_points[0]],  # Lane 3
+                        'l': [entry_collision_points[3], exit_collision_points[2],
+                              inner_square_collision_points[3], inner_square_collision_points[1],
+                              left_turn_collision_points[0], left_turn_collision_points[1],
+                              left_turn_collision_points[2], left_turn_collision_points[3]],
+                        'r': [entry_collision_points[3], exit_collision_points[0],
+                              inner_square_collision_points[3]]}]
+
+
+# returns the points that both cars have to go through
+def collision_points(car_intention, car_lane, follow_intention, follow_lane):
+    first_points = intersection_matrix[car_lane][car_intention]
+    follower_points = intersection_matrix[follow_lane][follow_intention]
+    mutual_points = [p for p in first_points if p in follower_points]
+    return mutual_points
 
 
 # gets the radio of the circumference that the car has to follow to turn to the right. Entry point represents
@@ -104,8 +214,9 @@ def do_round(cars, channel):
         car.update()
 
 
-def random_car(name, channel, pos_x=None, pos_y=None, acceleration_rate=0.0,
-               initial_speed=None, min_speed=0, max_speed=20, creation_time=0, number_of_lanes=4,
+def random_car(name, channel, pos_x=None, pos_y=None, initial_acceleration_rate=None, min_acceleration = 0.0,
+               max_acceleration = 5.0, initial_speed=None,
+               min_speed=0, max_speed=20, creation_time=0, number_of_lanes=4,
                full_intersection=full_intersection_rect,
                inner_intersection=inner_intersection_rect, create_sensor_flag=False,
                controller=default_controller, **kwargs):
@@ -139,6 +250,8 @@ def random_car(name, channel, pos_x=None, pos_y=None, acceleration_rate=0.0,
         tmp_x, tmp_y, direction, lane = outside_initial_positions[new_lane]
     if initial_speed is None:
         initial_speed = randint(min_speed, max_speed)
+    if initial_acceleration_rate is None:
+        initial_acceleration_rate = uniform(min_acceleration, max_acceleration)
     if "initial_speed" in kwargs:
         initial_speed = kwargs["initial_speed"]
     if "intention" in kwargs:
@@ -155,25 +268,25 @@ def random_car(name, channel, pos_x=None, pos_y=None, acceleration_rate=0.0,
         pos_x = tmp_x
     if pos_y is None:
         pos_y = tmp_y
-    return Car(name, pos_x, pos_y, acceleration_rate=acceleration_rate,
+    return Car(name, pos_x, pos_y, acceleration_rate=initial_acceleration_rate,
                channel=channel, direction=direction, lane=lane, absolute_speed=initial_speed,
                intention=intention, creation_time=creation_time, full_intersection=full_intersection,
                inner_intersection=inner_intersection, sensor_flag=create_sensor_flag, controller=controller)
 
 
-def fix_acceleration(ticks_to_crash, actual_speed, time_step, other_speed=0):
-    # solve: actual_speed + acceleration * time_step * ticks_to_crash = 0
-    new_acceleration = (other_speed - actual_speed) / float(ticks_to_crash*time_step)
+def fix_acceleration(ticks_to_crash, actual_speed, time_step=0.1, other_speed=0, speed_factor=2):
+    # solve for acceleration: actual_speed + acceleration * time_step * ticks_to_crash * speed_factor = other_speed
+    new_acceleration = (other_speed - actual_speed) / float(ticks_to_crash*time_step*speed_factor)
     return new_acceleration
 
 
+# Returns how many ticks it would take to go through that distance with that speed in a straight line
+def instant_ticks_to_crash(distance, speed, time_step, speed_factor):
+    return distance / float(time_step * speed_factor * speed)
+
+
 def create_sensor(owner_car):
-    return ProximitySensor(owner_car=owner_car)
-
-
-# Returns the coordinates of the point in the intersection where the cars with that characteristics may collide
-def get_collision_point(lane, intention, other_lane, other_intention):
-    pass
+    return DistanceSensor(owner_car=owner_car)
 
 
 def get_distance(x, y, x_2, y_2):
@@ -181,34 +294,39 @@ def get_distance(x, y, x_2, y_2):
     return sqrt(pow(x - x_2, 2) + pow(y - y_2, 2))
 
 
-def init_graphic_environment(screen_width, screen_height):
+def draw_collision_points(screen):
+    green_dot = pygame.image.load(images_directory + "green_light.jpg")
+    green_dot = pygame.transform.scale(green_dot, (5, 5))
+    for p in intersection_points:
+        g = green_dot.copy()
+        g_rect = g.get_rect()
+        g_rect.center = p
+        screen.blit(g, g_rect)
+
+
+# Returns the acceleration the car needs to get to the other car's position with 0 speed in what should be N seconds
+def n_seconds_fix(distance, ticks_in_one_second, speed, n=3, time_step=0.1, speed_factor=2):
+    ticks_left_to_crash = instant_ticks_to_crash(distance, speed, time_step, speed_factor)
+    minimum_distance_in_ticks = ticks_in_one_second * n
+    ticks_distance = ticks_left_to_crash - minimum_distance_in_ticks
+    new_acc = fix_acceleration(ticks_to_crash=ticks_distance, actual_speed=speed)
+    return new_acc
+
+
+def init_graphic_environment(screen_width=background_width, screen_height=background_height):
     """
     Initialize the graphic environment.
     :param screen_width: width of the screen.
     :param screen_height: height of the screen.
     :return: the screen, the backgrounds and the font.
     """
-    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (0, 0)
-    images_directory = os.path.dirname(os.path.abspath(__file__)) + "/../images/"
-    intersection_background = pygame.image.load(images_directory + "background.jpg")
+    pygame.init()
     pygame.display.set_icon(intersection_background)
     screen = pygame.display.set_mode((screen_width, screen_height))
     background = pygame.Surface(screen.get_size())
     background = background.convert(background)
-    background.fill((250, 250, 250))
-    pygame.init()
+    background.fill(white)
     font = pygame.font.SysFont('Arial', 20)
     pygame.display.set_caption('Car simulation')
 
     return screen, background, intersection_background, font
-
-
-if __name__ == '__main__':
-    from math import degrees, atan, pow, sqrt
-    x1 = 382
-    y1 = 385
-    x2 = 435
-    y2 = 435
-    angle = (y2 - y1) / (x2 - x1)
-    print(360 - degrees(atan(angle)))
-

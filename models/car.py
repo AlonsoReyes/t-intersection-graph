@@ -21,15 +21,15 @@ class Car(object):
     """
     TIME_STEP = 0.1
     SPEED_FACTOR = 2
-    max_forward_speed = 20.0  # meters/seconds.
-    image_scale_rate = 0.05
-    maximum_acceleration = 5.0  # 4.2
-    minimum_acceleration = -5.0  # -5.0
+    max_forward_speed = 60.0  # meters/seconds.
+    image_scale_rate = 0.1  # 0.05
+    maximum_acceleration = 20.0  # 4.2
+    minimum_acceleration = -20.0  # -5.0
 
     def __init__(self, name, pos_x=0.0, pos_y=0.0, absolute_speed=0.0, acceleration_rate=3.0, direction=0, lane=1,
                  creation_time=None, left_intersection_time=None, channel=None, intention="s", ticks=1,
                  coordination_ticks=2, graph=None, leaf_cars=None, inner_intersection=None, full_intersection=None,
-                 controller=None, sensor_flag=False):
+                 controller=None, sensor_flag=False, algorithm_flag=False):
         """
         :param name: id to identify the car. Integer
         :param pos_x: x value of the car position.
@@ -141,8 +141,12 @@ class Car(object):
         self.sensor = None
         if sensor_flag:
             self.init_sensor()
+
+        self.algorithm_flag = algorithm_flag
+
         # Sets the car as the last car to enter through that lane
-        channel.last_to_enter_notification(self)
+        if channel is not None:
+            channel.last_to_enter_notification(self)
 
     def init_sensor(self):
         from utils.utils import create_sensor
@@ -169,6 +173,27 @@ class Car(object):
         return "Car " + str(self.get_name()) + " lane " + str(self.get_lane()) + " intention " + self.get_intention() \
                + " follows + " + ''.join([str(car) for car in self.get_following_cars()]) \
                + " creation time " + str(self.get_creation_time())
+
+    def to_json(self):
+        """
+        Returns a string representing a car in json format, for log use.
+        :return: dictionary of json representation of a car.
+        """
+        json_car = {"name":  str(self.get_name()),
+                    "lane": str(self.get_lane()),
+                    "speed": str(self.get_speed()),
+                    "acceleration": str(self.get_acceleration()),
+                    "creation_time": str(self.get_creation_time()),
+                    "intention": self.get_intention(),
+                    "actual_coordinates": {"x_coordinate": str(self.get_x_coordinate()),
+                                           "y_coordinate": str(self.get_y_coordinate()),
+                                           "direction": str(self.get_direction())},
+                    "initial_coordinates": {
+                         "x_coordinate": str(self.get_origin_x_coordinate()),
+                         "y_coordinate": str(self.get_origin_y_coordinate()),
+                         "direction": str(self.get_origin_direction())}
+                     }
+        return json_car
 
     # Getters and Setters
     def get_time_step(self):
@@ -419,6 +444,25 @@ class Car(object):
         self.screen_car.center = self.get_position()
 
     # Movement methods
+    def full_inside_inner_intersection(self):
+        return self.inner_intersection_rectangle.contains(self.get_rect())
+
+    def crossed_entrance(self):
+        pos_x, pos_y = self.get_position()
+        rad = self.get_direction() * pi / 180
+        car_length = self.get_car_length()
+        back_x = pos_x + sin(rad) * car_length
+        back_y = pos_y + cos(rad) * car_length
+        top = self.inner_intersection_rectangle.top
+        left = self.inner_intersection_rectangle.left
+        w = self.inner_intersection_rectangle.w
+        h = self.inner_intersection_rectangle.h
+        # inside rectangle
+        if top < back_x < top + w and left < back_y < left + w:
+            return True
+        else:
+            return False
+
     def inside_inner_intersection(self):
         """
         Checks if the car entered the collision area
@@ -459,27 +503,37 @@ class Car(object):
         return all_tables[(self_lane - other_car_lane) % 4][lane_to_int_dict[self_intention]][
             lane_to_int_dict[other_car_intention]]
 
+    # Returns what will be the next speed after accelerating but without making any changes
+    def next_speed(self):
+        from functions.car_functions import next_speed
+        speed = self.get_speed()
+        acc_rate = self.get_acceleration()
+        time_step = self.get_time_step()
+        max_speed = self.max_forward_speed
+        return next_speed(speed, acc_rate, time_step, max_speed)
+
     def accelerate(self):
         """
         Function to accelerate a car. Exception raised if maximum speed is reached or surpassed. Time unit is necessary
          to work in milliseconds. Seconds = 1000.
         :return: None
         """
-        speed_diff = self.acceleration_rate * self.TIME_STEP
-        new_speed = self.absolute_speed + speed_diff
+        self.absolute_speed = self.next_speed()
 
-        if new_speed > self.max_forward_speed:
-            self.absolute_speed = self.max_forward_speed
-        elif new_speed < 0:
-            self.absolute_speed = 0
-        else:
-            self.absolute_speed = new_speed
+    def next_position(self):
+        from functions.car_functions import next_position
+        speed = self.get_speed()
+        speed_factor = self.get_speed_factor()
+        time_step = self.get_time_step()
+        direction = self.get_direction()
+        pos_x, pos_y = self.get_position()
+        return next_position(speed, direction, pos_x, pos_y, time_step, speed_factor)
 
     def move(self):
         """
         Function to move a car. If its speed its 0, it'll not move. Time unit is necessary to work in milliseconds.
         Seconds = 1000.
-        """
+
         rad = self.get_direction() * pi / 180
         pos_x = self.get_x_coordinate()
         pos_y = self.get_y_coordinate()
@@ -487,6 +541,10 @@ class Car(object):
         pos_y_diff = -cos(rad) * self.get_speed() * self.TIME_STEP * self.SPEED_FACTOR
         self.set_x_coordinate(pos_x + pos_x_diff)
         self.set_y_coordinate(pos_y + pos_y_diff)
+        """
+        new_x, new_y = self.next_position()
+        self.set_x_coordinate(new_x)
+        self.set_y_coordinate(new_y)
 
     # Graph methods
     # adds then new car to the graph with its follow list, it doesnt add the follow list which contains the
@@ -505,7 +563,6 @@ class Car(object):
             if node.get_name() not in visited:
                 visited.add(node.get_name())
                 if cars_cross_path(lane, intention, node.get_lane(), node.get_intention()):
-                    # print(self.get_name(), ' ', name)
                     follow_list.append(node.get_name())
                     for car in node.get_follow_list():
                         visited.add(car)
@@ -624,6 +681,35 @@ class Car(object):
                 left = True
         return left and not self.inside_inner_intersection()
 
+    # Checks if the car got to the exit, this is needed to assign a new car to the sensor
+    def reached_exit(self):
+        pos_x, pos_y = self.get_position()
+        length = self.get_car_length()
+        destination = self.destination_lane()
+        top = self.inner_intersection_rectangle.top
+        left = self.inner_intersection_rectangle.left
+        h = self.inner_intersection_rectangle.h
+        w = self.inner_intersection_rectangle.w
+        rad = self.get_direction() * pi / 180
+        reached = False
+        if destination == 0:
+            limit = top + h
+            if limit <= pos_y + cos(rad) * length:
+                reached = True
+        elif destination == 1:
+            limit = left + w
+            if limit <= pos_x + sin(rad) * length:
+                reached = True
+        elif destination == 2:
+            limit = top
+            if limit >= pos_y + cos(rad) * length:
+                reached = True
+        elif destination == 3:
+            limit = left
+            if limit >= pos_x + sin(rad) * length:
+                reached = True
+        return reached
+
     # Checks the position of the car so it sends the NewCarMessage when it enters the coop zone and
     # sends the LeaveIntersectionMessage when it leaves the inner rectangle
     def check_position(self):
@@ -631,11 +717,14 @@ class Car(object):
             # If it hasn't changed to being inside the rectangle but it is colliding
             if not self.inside_full_rectangle and self.inside_full_intersection():
                 self.enter_intersection()
+            elif self.inside_full_rectangle and not self.inside_full_intersection():
+                self.inside_full_rectangle = False
             if self.inside_full_rectangle:
                 if not self.left_inner_rectangle and self.check_left_inner_intersection():
                     self.leave_inner_intersection()
             # If a bit of the car left the inner intersection it has to be assigned as the last one to leave
-            if not self.last_to_leave and self.inner_intersection_rectangle.contains(self.screen_car):
+            if not self.last_to_leave and self.reached_exit() \
+                    and not self.inner_intersection_rectangle.contains(self.screen_car):
                 self.last_to_leave = True
                 self.channel.last_to_leave_notification(self)
 
@@ -649,6 +738,7 @@ class Car(object):
     # To add more info you need to add it here and to the prepare_follow_list function in utils.
     def receive_info_message(self, message):
         # print("InfoMessage \nSender: ", message.get_sender_name(), " Receiver: ", self.get_name())
+
         if message.get_sender_name() in self.following_cars:
             followed = self.following_cars[message.get_sender_name()]
             x, y = message.get_sender_position()
@@ -659,6 +749,10 @@ class Car(object):
             followed['acceleration'] = message.get_sender_acceleration()
             followed['intention'] = message.get_sender_intention()
             followed['lane'] = message.get_sender_lane()
+            followed['car_length'] = message.get_sender_car_length()
+            followed['origin_direction'] = message.get_sender_origin_direction()
+            followed['origin_x'] = message.get_sender_origin_x()
+            followed['origin_y'] = message.get_sender_origin_y()
             # Maybe do something here or in the update method with this info
 
     def receive_new_car_message(self, message):
@@ -689,16 +783,15 @@ class Car(object):
             del self.get_graph()[sender_name]
         # Removes the car from the follow lists in the graph. Keeps graph info updated
         for node in self.get_graph().values():
-            follow_list = node.get_follow_list()
-            if sender_name in follow_list:
-                follow_list.remove(sender_name)
+            if sender_name in node.get_follow_list():
+                #print(sender_name)
+                node.get_follow_list().remove(sender_name)
 
     # If the supervisor car is None is the base case.
     def receive_welcome_message(self, message):
-        # print("WelcomeMessage \nSender: ", message.get_sender_name(), " Receiver: ", self.get_name(),
-        #       " Destination: ", message.get_receiver_name())
+        from models.controller import algorithm_controller
         if self.get_name() == message.get_receiver_name() or \
-                self.get_supervisor_car() is None:
+                (self.get_supervisor_car() is None and message.get_receiver_name() is None):
             self.set_supervisor_car(message.get_supervisor())
             self.set_second_at_charge(message.get_second_at_charge())
             # gets the prepared list from the welcome message using its name
@@ -706,17 +799,13 @@ class Car(object):
             self.set_leaf_cars(message.get_leaf_cars())
             self.set_following_cars(message.get_follow_list(self.get_name()))
             self.set_graph(copy.deepcopy(message.get_graph()))
+            # TODO: SET GRAPH CONTROLLER RIGHT
+            if self.algorithm_flag:
+                self.set_controller(algorithm_controller)
 
     # Every car sets the second at charge and the car that is meant to receive it sets the supervisor car too.
     # That is done just to work with how the messages are received
     def receive_second_at_charge_message(self, message):
-        # print("SecondAtChargeMessage \nSender: ", message.get_sender_name(), "Receiver: ", self.get_name(),
-        #      " Destination: ", message.get_receiver_name())
-        """
-        if message.get_sender_name() == self.get_second_at_charge():
-            self.set_supervisor_car(self.second_at_charge)
-            self.set_second_at_charge(message.get_receiver_name())
-        """
         if message.get_sender_name() == self.get_supervisor_car():
             self.set_second_at_charge(message.get_receiver_name())
             if message.get_receiver_name() == self.get_name():
@@ -757,7 +846,6 @@ class Car(object):
     # the car that is receiving will already be the second in charge and will have
     # the supervisor set correctly but no graph.
     def check_coordination(self):
-        self.add_to_coordination_counter(1)
         if self.get_coordination_counter() % self.get_coordination_ticks() == 0 \
                 and self.get_supervisor_car() is None:
             self.__class__ = SupervisorCar
@@ -779,7 +867,7 @@ class Car(object):
     def leave_inner_intersection(self):
         self.left_inner_rectangle = True
         self.send_left_intersection_message()
-        self.channel = None
+        # self.channel = None
 
     def get_virtual_x_position(self):
         """
@@ -796,70 +884,70 @@ class Car(object):
         Returns the x position of the virtual caravan environment.
         :return: <float> x position at the virtual environment
         """
-        rad = self.get_origin_direction() * pi / 180
-        x_real = - 1 * (self.get_x_coordinate() - self.get_origin_x_coordinate()) * cos(rad)
-        y_real = (self.get_y_coordinate() - self.get_origin_y_coordinate()) * sin(rad)
-        return x_real + y_real
+        from functions.car_functions import get_virtual_y_position
+        origin_direction = self.get_origin_direction()
+        origin_x = self.get_origin_x_coordinate()
+        origin_y = self.get_origin_y_coordinate()
+        pos_x, pos_y = self.get_position()
+        return get_virtual_y_position(origin_direction, origin_x, origin_y, pos_x, pos_y)
 
     def distance_to_inner_intersection(self):
+        from functions.car_functions import distance_to_inner_intersection
         lane = self.get_lane()
         inner_rectangle = self.inner_intersection_rectangle
-        top = inner_rectangle.top
-        left = inner_rectangle.left
-        height = inner_rectangle.h
-        width = inner_rectangle.w
-        distance = 0
-        if lane == 0:
-            distance = self.get_y_coordinate() - (top + height)
-        elif lane == 1:
-            distance = self.get_x_coordinate() - (left + width)
-        elif lane == 2:
-            distance = top - self.get_y_coordinate()
-        elif lane == 3:
-            distance = left - self.get_x_coordinate()
-        return distance
+        pos_x, pos_y = self.get_position()
+        return distance_to_inner_intersection(lane, inner_rectangle, pos_x, pos_y)
 
     # It turns the car to the right or left lane exactly
-    def turn_direction(self, radio, degrees=90):
-        direction_change = degrees * (self.get_speed() * self.TIME_STEP * self.SPEED_FACTOR) / (
-                pi / 2 * radio)
-        if self.get_intention() == 'r':
-            self.set_direction(self.get_direction() - direction_change)
-        else:
-            self.set_direction(self.get_direction() + direction_change)
-
-    def correct_direction(self, degrees=90):
+    def turn_direction(self, radio, turn_degrees=90):
+        from functions.car_functions import turn_direction
+        time_step = self.get_time_step()
+        speed_factor = self.get_speed_factor()
         actual_direction = self.get_direction()
-        if self.get_intention() == 'l':
-            target_direction = (self.get_origin_direction() + degrees) % 360
-            cmp = abs(target_direction - abs(actual_direction))
-            if cmp != 0.0 and cmp < 2.0:
-                self.set_direction(target_direction)
+        speed = self.get_speed()
+        intention = self.get_intention()
+        return turn_direction(speed, radio, actual_direction, intention, time_step=time_step,
+                              speed_factor=speed_factor, turn_degrees=turn_degrees)
+
+    def correct_direction(self, turn_degrees=90):
+        from functions.car_functions import correct_direction
+        actual_direction = self.get_direction()
+        intention = self.get_intention()
+        origin_direction = self.get_origin_direction()
+        return correct_direction(actual_direction, intention, origin_direction, turn_degrees=turn_degrees)
+
+    def next_direction(self):
+        if self.inner_intersection_rectangle is not None \
+                and self.full_intersection_rectangle is not None:
+            from functions.car_functions import next_direction
+
+            actual_direction = self.get_direction()
+            speed = self.get_speed()
+            lane = self.get_lane()
+            intention = self.get_intention()
+            origin_direction = self.get_origin_direction()
+            origin_x = self.get_origin_x_coordinate()
+            origin_y = self.get_origin_y_coordinate()
+            pos_x, pos_y = self.get_position()
+            inner_rectangle = self.inner_intersection_rectangle
+            return next_direction(speed, actual_direction, origin_direction, lane, intention,
+                                  inner_rectangle, pos_x, pos_y, origin_x, origin_y)
         else:
-            target_direction = abs(360 - self.get_origin_direction() - degrees) % 360
-            cmp = abs(target_direction - abs((360 - abs(actual_direction))))
-            if cmp != 0.0 and cmp < 2.0:
-                self.set_direction(target_direction)
+            return self.get_direction()
 
     def turn(self):
         """
         Turns the car to the direction it intends to turn.
         """
-        from utils.utils import get_right_turn_radio, get_left_turn_radio
-        if self.inner_intersection_rectangle is not None \
-                and self.full_intersection_rectangle is not None:
-            extra_distance = 0
-            right_turn_radio = get_right_turn_radio(self.get_lane())
-            left_turn_radio = get_left_turn_radio(self.get_lane(), extra_distance=extra_distance)
-            if self.get_intention() == "r":
-                if self.get_virtual_y_position() > -right_turn_radio and \
-                        self.distance_to_inner_intersection() <= 0:
-                    self.turn_direction(radio=right_turn_radio)
-            elif self.get_intention() == "l":
-                if self.get_virtual_y_position() < left_turn_radio and \
-                        self.distance_to_inner_intersection() + extra_distance <= 0:
-                    self.turn_direction(radio=left_turn_radio)
-            self.correct_direction()
+        new_direction = self.next_direction()
+        self.set_direction(new_direction)
+
+    # Returns what would be the position of the car in the next tick
+    def simulate_next_tick(self):
+        next_speed = self.next_speed()
+        next_direction = self.next_direction()
+        new_x, new_y = self.next_position()
+        return new_x, new_y, next_speed, next_direction
 
     def move_control(self):
         self.accelerate()
@@ -872,17 +960,19 @@ class Car(object):
     def update(self):
         if self.get_controller() is not None:
             self.get_controller()(self)
-
         if self.sensor is not None:
             self.sensor.watch()
 
         self.move_control()
         self.check_position()
-
+        if self.get_name() == 15:
+            print(list(self.following_cars))
+            print([self.get_acceleration(), self.get_speed()])
         if self.inside_full_rectangle and not self.left_inner_rectangle:
             self.send_update()
             if self.supervisor_car is None:
                 self.check_coordination()
+                self.add_to_coordination_counter(1)
         self.add_to_counter(1)
 
     # Check type
@@ -940,13 +1030,18 @@ class SecondAtChargeCar(Car):
         return True
 
     def receive_left_intersection_message(self, message):
-        # print("LeftIntersectionMessageSecond \nSender: ", message.get_sender_name(), " Receiver: ", self.get_name())
+        # print("LeftIntersectionMessageSecond \nSender: ", message.get_sender_name(), " Receiver: ", self.get_name())\
         sender_name = message.get_sender_name()
         if sender_name in self.get_following_cars():
             del self.get_following_cars()[sender_name]
         if sender_name in self.get_leaf_cars():
             self.get_leaf_cars().remove(sender_name)
         del self.get_graph()[sender_name]
+
+        for node in self.get_graph().values():
+            if sender_name in node.get_follow_list():
+                node.get_follow_list().remove(sender_name)
+
         if sender_name != self.get_name() and sender_name == self.get_supervisor_car():
             self.set_supervisor_car(self.get_name())
             self.__class__ = SupervisorCar
@@ -954,96 +1049,3 @@ class SecondAtChargeCar(Car):
             self.set_second_at_charge(second)
             # print("SecondAtChargemsg: Sender ", sender_name, " Receiver: ", self.get_name(), " New:", second)
             self.send_second_at_charge_message(second)
-
-
-class SimulationCar(Car):
-
-    def __init__(self, car=None, name=None, pos_x=0, pos_y=0, absolute_speed=0, acceleration_rate=0, direction=0,
-                 lane=0, intention='s', inner_intersection=None, full_intersection=None):
-        if car is not None:
-            name = car.get_name()
-            pos_x = car.get_x_coordinate()
-            pos_y = car.get_y_coordinate()
-            absolute_speed = car.get_speed()
-            acceleration_rate = car.get_acceleration()
-            direction = car.get_direction()
-            lane = car.get_lane()
-            intention = car.get_intention()
-            inner_intersection = car.inner_intersection_rectangle
-            full_intersection = car.full_intersection_rectangle
-        super(SimulationCar, self).__init__(name=name, pos_x=pos_x,
-                                            pos_y=pos_y, absolute_speed=absolute_speed,
-                                            acceleration_rate=acceleration_rate,
-                                            direction=direction, lane=lane,
-                                            intention=intention,
-                                            inner_intersection=inner_intersection,
-                                            full_intersection=full_intersection)
-        self.previous_direction = direction
-        self.previous_speed = absolute_speed
-        self.previous_acceleration = acceleration_rate
-        self.previous_x = pos_x
-        self.previous_y = pos_y
-
-    def reset(self):
-        self.set_x_coordinate(self.get_origin_x_coordinate())
-        self.set_y_coordinate(self.get_origin_y_coordinate())
-        self.set_speed(self.get_initial_speed())
-        self.set_direction(self.get_origin_direction())
-        self.set_acceleration(self.get_origin_acceleration())
-        self.draw_car()
-
-    def save_state(self):
-        self.previous_x = self.get_x_coordinate()
-        self.previous_y = self.get_y_coordinate()
-        self.previous_acceleration = self.get_acceleration()
-        self.previous_direction = self.get_direction()
-        self.previous_speed = self.get_speed()
-
-    def reverse(self):
-        self.set_x_coordinate(self.previous_x)
-        self.set_y_coordinate(self.previous_y)
-        self.set_speed(self.previous_speed)
-        self.set_direction(self.previous_direction)
-        self.set_acceleration(self.previous_acceleration)
-        self.draw_car()
-
-    def update(self):
-        self.move_control()
-
-    def check_if_passed(self, point_x, point_y, point=None):
-        from utils.utils import get_distance
-        passed = False
-        pos_x, pos_y = self.get_position()
-        if point is None:
-            point = pygame.Rect(point_x, point_y, 1, 1)
-        self.save_state()
-        before_distance = get_distance(pos_x, pos_y, point_x, point_y)
-        self.move_control()
-        pos_x, pos_y = self.get_position()
-        after_distance = get_distance(pos_x, pos_y, point_x, point_y)
-        self.reverse()
-        if after_distance > before_distance and not self.screen_car.colliderect(point):
-            passed = True
-        return passed
-
-    def collision_with_point(self, collision_x, collision_y):
-        point = pygame.Rect(collision_x, collision_y, 1, 1)
-        return self.screen_car.colliderect(point)
-
-    # return value is -1 if the car already passed that point and is not touching it
-    # Returns the amount of ticks that are left for the car to get to that point
-    def get_ticks_to_goal(self, collision_x, collision_y):
-        point = pygame.Rect(collision_x, collision_y, 1, 1)
-        ticks = -1
-        passed = self.check_if_passed(point=point, point_x=collision_x, point_y=collision_y)
-        if not passed:
-            self.save_state()
-            ticks = 0
-            while not self.screen_car.colliderect(point):
-                self.move_control()
-                ticks += 1
-            self.reverse()
-        return ticks
-
-    def calculate_new_acceleration(self, goal_ticks, collision_x, collision_y):
-        pass
